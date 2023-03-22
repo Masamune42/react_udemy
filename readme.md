@@ -87,3 +87,18 @@ function add(...args) {
     return result;
 }
 ```
+
+> 1.4 Fonctions pures
+```js
+// Fonction impure
+let x = 2;
+// On cumule 2 erreurs :
+// 1. On change un élément en dehors de la fonction
+// 2. On ne retourne pas le même résultat même si on lui passe le même argument
+const add1 = y => x += y;
+
+// Fonction pure
+// 1. On ne touche à aucun élément extérieur
+// 2. Retourne toujours la même chose
+const add2 = (a, b) => a + b;
+```
