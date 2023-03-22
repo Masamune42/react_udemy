@@ -52,3 +52,38 @@ const myObj = {
     }
 }
 ```
+
+> 1.3 Spread & rest
+Les spread operators sont utiles quand on a envie d'utiliser tous les élémnents d'un tableau avec une méthode ou quand on veut copier un tableau dans un autre
+```js
+const arr = [1,2,3];
+// On crée un tableau à partir du 1er et on ajoute 4
+const arr2 = [...arr, 4];
+
+const myObj = {
+    a: 1,
+    b: 2,
+    c: 3
+}
+// Idem avec un objet
+const myObj2 = {
+    ...myObj,
+    d: 4
+}
+// rest operator
+// On récupère les 2 1ers arguments a et b et le reste dans args
+function add(a, b, ...args) {
+    return (args);
+}
+// On additione tous les éléments passés en paramètre
+function add(...args) {
+    
+    let result = 0;
+
+    for (const arg of args) {
+        result += arg;
+    }
+
+    return result;
+}
+```
