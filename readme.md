@@ -102,3 +102,43 @@ const add1 = y => x += y;
 // 2. Retourne toujours la même chose
 const add2 = (a, b) => a + b;
 ```
+
+> 1.5 Fonctions d'ordre supérieur
+C'est une fonction qui en prend une autre en paramètre, qui en retourne une autre ou les 2
+```js
+const rawArr = [5, 6, 5889, 52, 415, 120]
+// Méthode classique
+const newArr = [];
+
+for (let i = 0; i < rawArr.length; i++) {
+    if (rawArr[i] > 100) {
+        newArr.push(rawArr[i])
+    }
+}
+// Fonction d'ordre supérieur
+// On reçoit un tableau et une fonction en paramètre
+function supArr(arr, fn) {
+    const newArr = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        // On utilise fn avec arr[i] en paramètre
+        if (fn(arr[i])) {
+            newArr.push(arr[i])
+        }
+    }
+
+    return newArr;
+}
+// On récupère toutes les valeurs de rawArr avec les valeurs supérieures à 100 en passant une fonction fléchée qui permet de le faire
+const arrSup100 = supArr(rawArr, (item) => {
+    if(item > 100) {
+        return item;
+    }
+})
+// Idem avec 10
+const arrSup10 = supArr(rawArr, (item) => {
+    if(item > 10) {
+        return item;
+    }
+})
+```
