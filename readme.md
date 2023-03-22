@@ -146,3 +146,20 @@ const arrSup10 = supArr(rawArr, (item) => {
     }
 })
 ```
+
+> 1.7 Destructuring
+```js
+const pays = {
+    nom: "Italie",
+    pop: 60
+}
+// On récupère nom et pop dans des variables
+const {nom, pop} = pays;
+
+// Fonction où l'on passe en paramètre un objet et où l'on récupère le paramètre nommé en entrée
+const data = ({nom}) => nom;
+
+// Marche aussi avec les tableaux
+const arr = [1, 2, 3];
+const [a, b, c] = arr;
+```
