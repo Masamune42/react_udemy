@@ -6,10 +6,12 @@
 
 ### 1. Rappel
 > 1.1 var, let et const
+
 - var -> function scope, peut être redéclaré mais peut apporter des bugs. Si déclaré, on peut y avoir accès dans window et donc en variable global.
 - let, const -> bloc scope, on ne les redéclare pas = moins de bugs. Si déclaré, ne fera pas parti des variables globales.
 
 > 1.2 Fonctions fléchées et classiques
+
 Les fonctions fléchées permettent de ne pas avoir de hoisting
 ```js
 const add = (a, b) => {
@@ -54,6 +56,7 @@ const myObj = {
 ```
 
 > 1.3 Spread & rest
+
 Les spread operators sont utiles quand on a envie d'utiliser tous les élémnents d'un tableau avec une méthode ou quand on veut copier un tableau dans un autre
 ```js
 const arr = [1,2,3];
@@ -104,6 +107,7 @@ const add2 = (a, b) => a + b;
 ```
 
 > 1.5 Fonctions d'ordre supérieur
+
 C'est une fonction qui en prend une autre en paramètre, qui en retourne une autre ou les 2
 ```js
 const rawArr = [5, 6, 5889, 52, 415, 120]
