@@ -54,3 +54,27 @@ function App() {
   );
 }
 ```
+
+## Les props
+On peut transmettre des propriétés (props) depuis le composant parent (App.js -> Item.js)
+```js
+// Exemple 1 : si on déclare une variable txt dans Item
+<Item txt={"Hello World"} />
+<Item txt={"Hello Item"} />
+<Item txt={"Hello Japan"} />
+
+// Dans Item.js on peut récupérer la propriété
+function Item(props) {
+    return (
+        <h1>{props.txt}</h1>
+    )
+}
+
+// Exemple 2 : On peut passer un state en paramètre
+<Item number={monState} />
+// Pour l'afficher dans Item.js
+return (
+    <h1>{props.number}</h1>
+)
+```
+Si props passé à un composant se met à jour, alors le composant aussi.
