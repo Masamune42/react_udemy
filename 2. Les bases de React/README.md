@@ -18,7 +18,11 @@ function Item() {
 
 export default Item;
 // Appel de Item dans un autre fichier
-<Item />
+return (
+    <div className="App">
+        <Item />
+    </div>
+);
 ```
 
 ## Fonction useState()
@@ -30,4 +34,23 @@ useState()
 // On utilise le destructuring pour récupérer les 2 éléments de useState
 const [monState, setMonState] = useState(10);
 // On peut maintenant afficher les 2 variables
+```
+
+## Modifier le state
+Quand on change la valeur d'un state, le composant se rerender / met à jour.
+```js
+function App() {
+  const [monState, setMonState] = useState(10);
+  // On modifie le state de monState
+  const modifyState = () => {
+    setMonState(20);
+  }
+
+  return (
+    <div className="App">
+      <h1>Hello state : {monState}</h1>
+      <button onClick={modifyState}>Change state</button>
+    </div>
+  );
+}
 ```
