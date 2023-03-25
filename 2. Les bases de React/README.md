@@ -139,3 +139,28 @@ Il faut aussi l'importer dans le CSS dans le composant
 import './Item.css'
 ```
 Il faut bien nommer les éléments (class / id) pour ne pas avoir de conflit de CSS entre les fichiers CSS des composants et celui de l'App
+
+## Utiliser des images
+Dans le CSS : utilisation classique avec par ex : background-image
+```js
+// Image via un lien
+<img src={"https://images.unsplash.com/photo-1586999768743-29b95f347a25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80"} alt="" />
+
+// Image en local
+// 1. Pour une image que l'on utilise que dans le composant
+import ImgChatRoux from './imgChatRoux.jpg'
+// 2. Pour une image que l'on utilise partout
+import ImgChatRoux from '../../assets/imgChatRoux.jpg'
+<img src={ImgChatRoux} alt="" />
+
+// 3. Pour une image qui se trouve dans le dossier public (sans import)
+<img src={process.env.PUBLIC_URL + `/images/imgChatRoux.jpg`} alt="" />
+// Idem avec les svg
+// Sinon on peut déclarer un SVG comme un component
+import { ReactComponent as Cat } from "./cat.svg";
+<Cat />
+```
+
+Le plus conseillé :
+- Mettre les images dans le dossier /src, si besoin dans /Components puis dans le dossier du component qui l'utilise (1 et 2)
+- Si on a pas de backend et pas d'API qui nous fourni les images on peut le mettre dans le dossier public (3)
