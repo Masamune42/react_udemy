@@ -117,3 +117,25 @@ function App() {
 A avoir en tête mais éviter de l'utiliser car si on a un parent avec plusieurs enfants imbriquées, le code deviendra vite illisible.
 
 On peut utiliser à la place : l'API contexte ou Redux qui permettent de gérer le state de façon globale et de l'injecter dans les composants qui en ont besoin.
+
+## Utiliser du CSS avec React
+```js
+const toggle = false;
+// On peut utiliser une condition ternaire pour utiliser du CSS
+const styleCSS = { color: toggle ? "crimson" : "green" }
+
+return (
+  <div>
+      <h1 style={styleCSS}>Hello depuis Item</h1>
+  </div>
+)
+```
+
+On peut trier nos composants avec leur fichier CSS dédié dans des dossiers et sous dossiers dans src :
+- \src\Components\Item\Item.js
+- \src\Components\Item\Item.css
+Il faut aussi l'importer dans le CSS dans le composant
+```js
+import './Item.css'
+```
+Il faut bien nommer les éléments (class / id) pour ne pas avoir de conflit de CSS entre les fichiers CSS des composants et celui de l'App
