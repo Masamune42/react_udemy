@@ -78,3 +78,42 @@ return (
 )
 ```
 Si props passé à un composant se met à jour, alors le composant aussi.
+
+## Remonter le state
+On peut faire remonter un state du composant enfant dans le composant parent.
+```js
+// Dans Item.js (enfant)
+// 3. On reçoit la fonction de l'élément parent via props
+function Item(props) {
+
+    const [itemState, setItemState] = useState('Item state !')
+    // 4. On utilise la fonction au click du bouton en utilisant une fonction anonyme, sinon elle s'exécute à la création du composant uniquement. On envoie le state itemState vers le composant parent
+    return (
+        <div>
+            <h1>{props.number}</h1>
+            <button onClick={() => props.func(itemState)}>Change state</button>
+        </div>
+    )
+}
+
+// Dans App.js (parent)
+function App() {
+  const [monState, setMonState] = useState(10);
+  // 1. On a une fonction modifyState qui reçoit un paramètre
+  const modifyState = (data) => {
+    setMonState(data);
+  }
+
+  // 2. On utilise la fonction dans le composant enfant
+  // 5. On modifie le state du composant App.js
+  return (
+    <div className="App">
+      <h1>Hello state : {monState}</h1>
+      <Item func={modifyState} />
+    </div>
+  );
+}
+```
+A avoir en tête mais éviter de l'utiliser car si on a un parent avec plusieurs enfants imbriquées, le code deviendra vite illisible.
+
+On peut utiliser à la place : l'API contexte ou Redux qui permettent de gérer le state de façon globale et de l'injecter dans les composants qui en ont besoin.

@@ -1,9 +1,14 @@
+import { useState } from "react";
+
 function Item(props) {
 
-    console.log(props);
+    const [itemState, setItemState] = useState('Item state !')
 
     return (
-        <h1>{props.number}</h1>
+        <div>
+            <h1>{props.number}</h1>
+            <button onClick={() => props.func(itemState)}>Change state</button>
+        </div>
     )
 }
 
