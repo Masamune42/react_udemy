@@ -164,3 +164,35 @@ import { ReactComponent as Cat } from "./cat.svg";
 Le plus conseillé :
 - Mettre les images dans le dossier /src, si besoin dans /Components puis dans le dossier du component qui l'utilise (1 et 2)
 - Si on a pas de backend et pas d'API qui nous fourni les images on peut le mettre dans le dossier public (3)
+
+## Utiliser les inputs
+```js
+function App() {
+
+  const [inputData, setInputData] = useState();
+
+  const changeInput = (e) => {
+    // On change le state quand on tape dans l'input
+    setInputData(e);
+  }
+
+  console.log(inputData);
+
+  // e -> objet d'évènement, e.target.value -> On récupère la valeur de l'input
+  // On utilise onInput pour lier l'évènement
+  return (
+    <div className="App">
+      <h1>Hello state depuis App</h1>
+      <input type="text" onInput={e => changeInput(e.target.value)} />
+    </div>
+  );
+}
+// On peut utiliser le 2 ways databinding
+// On écrit via le state qui se trouve dans useState et quand on écrit dans l'input
+return (
+    <div className="App">
+      <h1>Hello state depuis App</h1>
+      <input type="text" value={inputData} onInput={e => changeInput(e.target.value)} />
+    </div>
+  );
+```
