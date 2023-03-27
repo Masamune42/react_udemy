@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      {toggle && <h1>Le state est true</h1>}
+      <div className="box" style={{backgroundColor: toggle ? 'salmon' : "lightblue"}}></div>
       <button onClick={changeState}>Change state</button>
     </div>
   );

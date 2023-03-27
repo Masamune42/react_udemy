@@ -72,3 +72,23 @@ return (
   </div>
 );
 ```
+
+# Faire un toggle de classe et CSS
+Le système de toggle est très couramment utilisé
+```js
+// On gère les classes avec le toggle
+return (
+  <div className="App">
+    <div className={toggle ? "box animated" : "box"}></div>
+    <button onClick={changeState}>Change state</button>
+  </div>
+);
+
+// On peut gérer le style aussi (peu utilisé)
+return (
+  <div className="App">
+    <div className="box" style={{backgroundColor: toggle ? 'salmon' : "lightblue"}}></div>
+    <button onClick={changeState}>Change state</button>
+  </div>
+);
+```
