@@ -3,16 +3,17 @@ import Item from './Components/Item/Item.js'
 
 function App() {
 
-  const [toggle, setToggle] = useState(true);
-
-  const changeState = () => {
-    setToggle(!toggle)
-  }
+  const [dataArr, setdataArr] = useState([
+    {nom: "Juliette"},
+    {nom: "John"},
+    {nom: "Joris"},
+  ]);
 
   return (
     <div className="App">
-      <div className="box" style={{backgroundColor: toggle ? 'salmon' : "lightblue"}}></div>
-      <button onClick={changeState}>Change state</button>
+      {dataArr.map((item, index) => {
+        return <p key={index}>Nom : {item.nom}</p>
+      })}
     </div>
   );
 }

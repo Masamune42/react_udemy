@@ -92,3 +92,25 @@ return (
   </div>
 );
 ```
+
+## Créer des listes
+```js
+function App() {
+
+  // On déclare un tableau
+  const [dataArr, setdataArr] = useState([
+    {nom: "Juliette"},
+    {nom: "John"},
+    {nom: "Joris"},
+  ]);
+
+  // On utilise la fonction map qui permet de retourner un tableau modifié à partir d'un autre
+  return (
+    <div className="App">
+      {dataArr.map((item, index) => {
+        return <p key={index}>Nom : {item.nom}</p>
+      })}
+    </div>
+  );
+}
+```
