@@ -49,3 +49,26 @@ return (
   </div>
 );
 ```
+
+## Opérateur ternaire
+```js
+return (
+<div className="App">
+  {toggle ?
+    <h1>Le state est true</h1>
+    :
+    <h1>Le state est false</h1>
+  }
+  <button onClick={changeState}>Change state</button>
+</div>
+);
+
+// short-circuit operator
+// Apparait seulement si toggle est true
+return (
+  <div className="App">
+    {toggle && <h1>Le state est true</h1>}
+    <button onClick={changeState}>Change state</button>
+  </div>
+);
+```

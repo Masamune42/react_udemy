@@ -9,17 +9,9 @@ function App() {
     setToggle(!toggle)
   }
 
-  let toggleContenu;
-
-  if (toggle) {
-    toggleContenu = <h1>Le state est true</h1>
-  } else {
-    toggleContenu = <h1>Le state est false</h1>
-  }
-
   return (
     <div className="App">
-      {toggleContenu}
+      {toggle && <h1>Le state est true</h1>}
       <button onClick={changeState}>Change state</button>
     </div>
   );
