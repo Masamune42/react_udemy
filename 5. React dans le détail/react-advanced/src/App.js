@@ -2,21 +2,32 @@ import { useState, useEffect } from "react";
 import './App.css';
 
 function App() {
- 
-  const [dataComponent, setDataComponent] = useState(1);
- 
-  const changeState = () => {
-    setDataComponent(dataComponent + 1)
-  }
+  // On crée un state pour l'image
+  const [dataImg, setDataImg] = useState();
 
+  // On appel l'API au chargement de la page
   useEffect(() => {
-    console.log("Mise à jour de dataComponent");
-  }, [dataComponent])
+    // On appel le lien via fetch
+    fetch(`https://api.thecatapi.com/v1/images/search`)
+      .then(response => {
+        // Une fois la réponse reçue, on le transforme en json
+        return response.json();
+      })
+      .then(data => {
+        // Une fois la transformation en json effectuée, j'affecte l'URL de l'image au state
+        setDataImg(data[0].url)
+      })
+  }, [])
 
   return (
     <div className="App">
-      <h1>Le state est {dataComponent}</h1>
-      <button onClick={changeState}>Change dataComponent</button>
+      {/* Pour éviter d'avoir une image cassée (ex : lien qui ne marche pas) on utilise un short-circuit operator */}
+      {dataImg &&
+        <img
+          src={dataImg}
+          alt="cat"
+          style={{ width: "500px" }}
+        />}
     </div>
   );
 }
