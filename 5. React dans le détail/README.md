@@ -24,3 +24,74 @@ Cela peut servir d'effecteur des actions quand certains types d'actions vont cha
 - Supprimer
 - Faire des intéractions
 - Faire des animations...
+
+## Appel d'une API
+```js
+import { useState, useEffect } from "react";
+import './App.css';
+
+function App() {
+  // On crée un state pour l'image
+  const [dataImg, setDataImg] = useState();
+
+  // On appel l'API au chargement de la page
+  useEffect(() => {
+    // On appel le lien via fetch
+    fetch(`https://api.thecatapi.com/v1/images/search`)
+      .then(response => {
+        // Une fois la réponse reçue, on le transforme en json
+        return response.json();
+      })
+      .then(data => {
+        // Une fois la transformation en json effectuée, j'affecte l'URL de l'image au state
+        setDataImg(data[0].url)
+      })
+  }, [])
+
+  return (
+    <div className="App">
+      {/* Pour éviter d'avoir une image cassée (ex : lien qui ne marche pas) on utilise un short-circuit operator */}
+      {dataImg &&
+        <img
+          src={dataImg}
+          alt="cat"
+          style={{ width: "500px" }}
+        />}
+    </div>
+  );
+}
+```
+
+## Utiliser "setInterval" avec React
+```js
+const [timer, setTimer] = useState(1)
+
+// Mauvaises utilisations de setInterval avec un state
+// On met à jour le state et on recrée une méthode setInterval à chaque fois. Elles seront dans la mémoire et vont tenter de mettre à jour le state à la suite des autres. Entraine des bugs /!\
+setInterval(() => {
+    setTimer(timer + 1)
+}, 1000)
+
+// Va passer à 2 puis s'arrête.
+// Au moment où l'on appelle le timer, timer fait référence à 1.
+useEffect(() => {
+    setInterval(() => {
+        setTimer(timer + 1)
+    }, 1000);
+}, [])
+
+// SOLUTION
+// Si on utilise une fonction callback dans le setTimer, use State va lui fournir le nouveau state et on peut changer son state
+useEffect(() => {
+    const intervalID = setInterval(() => {
+        setTimer(timer => timer + 1)
+    }, 1000);
+
+    // Cleanup function
+    // Quand on détruit le composant (rendu conditionnel avec toggle) on l'enlève de la mémoire via le return
+    return () => {
+        clearInterval(intervalID);
+    }
+}, [])
+```
+
