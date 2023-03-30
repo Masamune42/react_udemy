@@ -95,3 +95,48 @@ useEffect(() => {
 }, [])
 ```
 
+## Destruction d'un composant
+Un composant apparait, s'affiche, se met à jour et peut être détruit s'il n'est plus utilisé / visible pour ne pas surcharger la mémoire
+```js
+function App() {
+
+  const [toggle, setToggle] = useState(true)
+
+  // Fonction qui toggle le composant
+  const toggleFunc = () => {
+    setToggle(!toggle)
+  }
+
+  return (
+    <div className="App">
+      <button onClick={toggleFunc}>Toggle</button>
+      {/* Si toggle est à TRUE, alors on affiche Timer */}
+      {/* Si toggle est à FALSE, alors on n'affiche plus le composant et on lance la cleanup function */}
+      <h2>{toggle && <Timer />}</h2>
+    </div>
+  );
+}
+
+function Timer() {
+
+  const [timer, setTimer] = useState(1)
+
+
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      setTimer(timer => timer + 1)
+    }, 1000);
+
+    return () => {
+      alert('COMPOSANT DETRUIT !')
+      clearInterval(intervalID);
+    }
+  }, [])
+
+  return (
+    <div className="App">
+      <h1>{timer}</h1>
+    </div>
+  );
+}
+```
