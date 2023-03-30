@@ -140,3 +140,21 @@ function Timer() {
   );
 }
 ```
+
+## Les fragments
+Afin d'éviter d'ajouter un noeud supplémentaire en HTML, on peut utiliser des fragments
+```js
+import { useState, useEffect, Fragment } from "react";
+return (
+  <Fragment>
+      <h1>{timer}</h1>
+  </Fragment>
+);
+
+// On peut aussi écrire les fragments de cette façon et sans importer React Fragment
+return (
+  <>
+      <h1>{timer}</h1>
+  </>
+);
+```

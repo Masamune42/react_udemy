@@ -12,15 +12,14 @@ function Timer() {
         }, 1000);
 
         return () => {
-            alert('COMPOSANT DETRUIT !')
             clearInterval(intervalID);
         }
     }, [])
 
     return (
-        <div className="App">
+        <>
             <h1>{timer}</h1>
-        </div>
+        </>
     );
 }
 
