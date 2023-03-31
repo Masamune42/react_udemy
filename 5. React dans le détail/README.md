@@ -197,3 +197,47 @@ function App() {
   );
 }
 ```
+
+## Sélectionner un tableau d'éléments
+```js
+function App() {
+
+  const [toggle, setToggle] = useState(true)
+
+  // On déclare useRef()
+  const ref = useRef([]);
+
+  const toggleFunc = () => {
+    setToggle(!toggle)
+  }
+
+  useEffect(() => {
+    console.log(ref);
+  }, [])
+
+  // On crée une méthode pour ajouter chaque élement sélectionné
+  const addToRef = el => {
+    // Si l'élément sélectionné existe ET qu'il ne se trouve pas dans le tableau, on l'ajoute
+    if(el && !ref.current.includes(el)) {
+      ref.current.push(el)
+    }
+  }
+
+  return (
+    <div className="App">
+      {/* On déclare les vidéos avec la méthode en ref */}
+      <video ref={addToRef} width="750" height="500" autoPlay controls muted>
+        <source src={Video} />
+      </video>
+      <video ref={addToRef} width="750" height="500" autoPlay controls muted>
+        <source src={Video} />
+      </video>
+      <video ref={addToRef} width="750" height="500" autoPlay controls muted>
+        <source src={Video} />
+      </video>
+
+      <button onClick={toggleFunc}>Toggle</button>
+    </div>
+  );
+}
+```
