@@ -280,3 +280,33 @@ const toggleFunc = () => {
   setToggle(newArr)
 }
 ```
+
+## Comprendre "props.children"
+Quand on ne sait pas ce qu'on attend de l'élément parent à l'élément enfant, on peut le récupérer via "props.children"
+```js
+// Dans Content.js
+return (
+    <div className="content">
+        {props.children}
+    </div>
+)
+
+// Dans App.js
+return (
+  <div className="App">
+    <Content>
+      <h1>Titre de mon article 1</h1>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </Content>
+    <Content>
+      <h1>Titre de mon article 2</h1>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </Content>
+    <Content>
+      <h1>Titre de mon article 3</h1>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </Content>
+    <button onClick={toggleFunc}>Toggle</button>
+  </div>
+);
+```
