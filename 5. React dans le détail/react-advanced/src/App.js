@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import './App.css';
 import Content from "./Content.js";
 
@@ -12,20 +12,13 @@ function App() {
     setToggle(newArr)
   }
 
+  const tableau = useMemo(() => {
+    return [1,2,3,4,5];
+  }, []) 
+
   return (
     <div className="App">
-      <Content>
-        <h1>Titre de mon article 1</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
-      </Content>
-      <Content>
-        <h1>Titre de mon article 2</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
-      </Content>
-      <Content>
-        <h1>Titre de mon article 3</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
-      </Content>
+      <Content num={tableau} />
       <button onClick={toggleFunc}>Toggle</button>
     </div>
   );

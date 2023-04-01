@@ -1,9 +1,12 @@
+import React from "react"
 
-export default function Content(props) {
-
+function Content(props) {
+    console.log("Mise à jour");
     return (
         <div className="content">
-            {props.children}
+            <h1>{props.num}</h1>
         </div>
     )
 }
+
+export default React.memo(Content)

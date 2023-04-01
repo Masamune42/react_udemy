@@ -310,3 +310,42 @@ return (
   </div>
 );
 ```
+
+## Utiliser "memo"
+Si on envoie une valeur dans un composant enfant mais qu'on ne veut pas qu'il s'actualise si la valeur ne change pas, on utilise React.memo() et useMemo() si on utilise un tableau
+```js
+// Content.js
+import React from "react"
+
+function Content(props) {
+    console.log("Mise à jour");
+    return (
+        <div className="content">
+            <h1>{props.num}</h1>
+        </div>
+    )
+}
+
+export default React.memo(Content)
+
+// App.js
+return (
+  <div className="App">
+    <Content num={5} />
+    <button onClick={toggleFunc}>Toggle</button>
+  </div>
+);
+
+
+// Si on utilise un tableau on utilise useMemo() avec une fonction callback
+const tableau = useMemo(() => {
+  return [1,2,3,4,5];
+}, []) 
+
+return (
+  <div className="App">
+    <Content num={tableau} />
+    <button onClick={toggleFunc}>Toggle</button>
+  </div>
+);
+```
