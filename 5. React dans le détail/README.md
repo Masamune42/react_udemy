@@ -349,3 +349,23 @@ return (
   </div>
 );
 ```
+
+## Compléter le tout avec "useCallback"
+Permet de ne pas mettre à jour si la fonction ne change pas et pour ne pas recréer la fonction
+```js
+const foo = useCallback(() => {
+  console.log("click");
+}, [])
+
+return (
+  <div className="App">
+    <Content num={tableau} foo={foo} />
+    <button onClick={toggleFunc}>Toggle</button>
+  </div>
+);
+```
+/!\ Les memos ne sont pas souvent utilisés en général car cela ajoute beaucoup de syntaxe aux composants et devient illisible. Il parait que si l'on englobe trop d'éléments avec des memos, on peut perdre en performance que si on n'en utilisait pas.
+
+On peut l'utiliser si :
+- On utilise une fonction très large avec beaucoup de calculs et peut mettre du temps
+- Un tableau a plein d'éléments à passer à des composants enfants

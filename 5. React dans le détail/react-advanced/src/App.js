@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import './App.css';
 import Content from "./Content.js";
 
@@ -13,12 +13,16 @@ function App() {
   }
 
   const tableau = useMemo(() => {
-    return [1,2,3,4,5];
-  }, []) 
+    return [1, 2, 3, 4, 5];
+  }, [])
+
+  const foo = useCallback(() => {
+    console.log("click");
+  }, [])
 
   return (
     <div className="App">
-      <Content num={tableau} />
+      <Content num={tableau} foo={foo} />
       <button onClick={toggleFunc}>Toggle</button>
     </div>
   );
