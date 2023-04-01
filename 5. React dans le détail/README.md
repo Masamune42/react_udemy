@@ -241,3 +241,19 @@ function App() {
   );
 }
 ```
+
+## Utiliser "addEventListener"
+Si on veut écouter sur l'objet global window ou document, on l'utilise dans useEffect()
+```js
+useEffect(() => {
+  window.addEventListener('resize', actionResize);
+
+  function actionResize() {
+    console.log('Resized');
+  }
+
+  return () => {
+    window.removeEventListener('resize', actionResize)
+  }
+}, [])
+```
