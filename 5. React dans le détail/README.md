@@ -257,3 +257,26 @@ useEffect(() => {
   }
 }, [])
 ```
+
+## Ne jamais modifier le state directement dans un tableau/objet
+Quand on utilise un tableau ou un objet, on ne peut jamais modifier leur state directement.
+```js
+const [toggle, setToggle] = useState([1, 2, 3])
+// Mauvaise façon !
+const toggleFunc = () => {
+  // On ajoute 4 au tableau du state toggle
+  toggle.push(4);
+  // On demande de changer le toggle mais on l'a déjà fait directement, donc React ne détecte aucun changement entre les 2 valeurs de state et ne va rien changer
+  setToggle(toggle)
+}
+
+// Bonne façon
+const toggleFunc = () => {
+  // On crée une copie du tableau à copier
+  const newArr = [...toggle];
+  // On ajoute une valeur au nouveau tableau
+  newArr.push(4);
+  // On setToggle avec newArr
+  setToggle(newArr)
+}
+```
