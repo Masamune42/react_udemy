@@ -369,3 +369,39 @@ return (
 On peut l'utiliser si :
 - On utilise une fonction très large avec beaucoup de calculs et peut mettre du temps
 - Un tableau a plein d'éléments à passer à des composants enfants
+
+## Créer un "hook" personnalisé
+```js
+// Créer un fichier commencer par le mot "use" -> useDimension.js
+import { useEffect, useState } from "react"
+
+
+export default function useDimension() {
+
+    const [dimension, setDimension] = useState();
+
+    useEffect(() => {
+        window.addEventListener('resize', resizeFunc)
+
+        function resizeFunc() {
+            setDimension(window.innerWidth)
+        }
+        resizeFunc();
+
+        return () => {
+            window.removeEventListener('resize', resizeFunc)
+        }
+    })
+
+    return dimension;
+}
+
+// Utilisation dans App.js
+const browserWidth = useDimension();
+
+if(browserWidth > 772) {
+  console.log('Grand écran');
+} else {
+  console.log('Petit écran');
+}
+```
