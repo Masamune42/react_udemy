@@ -1,0 +1,43 @@
+# 7. Système de routes
+
+## Créer des chemins dynamiques
+```js
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Home from './Components/Home/Home.js';
+import Profile from './Components/Profile/Profile.js';
+import NotFound from './Components/NotFound/NotFound.js';
+
+function App() {
+  return (
+    <div className="App">
+      {/* On va déclarer des routes pour rediriger vers des composants */}
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/profil/:id' element={<Profile />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+}
+
+// Pour la page NotFound
+export default function NotFound() {
+
+  const navigate = useNavigate()
+
+  const goHome = () => {
+    navigate("/")
+  }
+
+  return (
+    <div>
+      <h1>Wops, cette page n'existe pas !</h1>
+      {/* Option 1 : on utilise une fonction callback directement dans le onClick */}
+      <button onClick={() => navigate("/")}>Retourner à l'accueil</button>
+      {/* Option 1 : on utilise une fonction qui appelle navigate */}
+      <button onClick={goHome}>Retourner à l'accueil</button>
+    </div>
+  )
+}
+```
