@@ -41,3 +41,36 @@ export default function NotFound() {
   )
 }
 ```
+
+## Créer une navigation
+```js
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export default function Navbar() {
+  return (
+    <nav>
+      <Link to="/">Accueil</Link>
+      <Link to="/services">Services</Link>
+      <Link to="/contact">Contact</Link>
+    </nav>
+  )
+}
+
+// Dans App.js
+function App() {
+  return (
+    <div className="App">
+      <Navbar />
+      {/* On va déclarer des routes pour rediriger vers des composants */}
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/profil/:id' element={<Profile />} />
+        <Route path='/services' element={<Services />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+}
+```
