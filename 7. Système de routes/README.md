@@ -96,3 +96,41 @@ export default function Navbar() {
   )
 }
 ```
+
+## Faire des routes imbriquées
+```js
+function App() {
+  return (
+    <div className="App">
+      <Navbar />
+      {/* On va déclarer des routes pour rediriger vers des composants */}
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/profil/:id' element={<Profile />} />
+        {/* On ne ferme pas la balise pour ajouter des routes imbriquées */}
+        <Route path='/services' element={<Services />} >
+          <Route path='/services/developpement' element={<Development />} />
+          <Route path='/services/cybersecurite' element={<CyberSecurity />} />
+        </Route>
+        <Route path='/contact' element={<Contact />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default function Services() {
+  return (
+    <div>
+      <h1>Section Services</h1>
+      {/* Navbar de 2 liens */}
+      <nav>
+        <Link to="/services/developpement">Développement</Link>
+        <Link to="/services/cybersecurite">Cyber sécurité</Link>
+      </nav>
+      {/* On indique où afficher les liens imbriqués */}
+      <Outlet />
+    </div>
+  )
+}
+```

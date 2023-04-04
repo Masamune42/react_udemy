@@ -6,6 +6,8 @@ import NotFound from './Components/NotFound/NotFound.js';
 import Navbar from './Components/Navbar/Navbar.js';
 import Services from './Components/Services/Services.js';
 import Contact from './Components/Contact/Contact.js';
+import Development from './Components/Services/Development/Development';
+import CyberSecurity from './Components/Services/CyberSecurity/CyberSecurity';
 
 function App() {
   return (
@@ -15,7 +17,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/profil/:id' element={<Profile />} />
-        <Route path='/services' element={<Services />} />
+        {/* On ne ferme pas la balise pour ajouter des routes imbriquées */}
+        <Route path='/services' element={<Services />} >
+          <Route path='/services/developpement' element={<Development />} />
+          <Route path='/services/cybersecurite' element={<CyberSecurity />} />
+        </Route>
         <Route path='/contact' element={<Contact />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
