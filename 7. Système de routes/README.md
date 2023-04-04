@@ -134,3 +134,39 @@ export default function Services() {
   )
 }
 ```
+
+## Les hooks utilitaires
+```js
+export default function Profile() {
+  // useParams permet de récupérer les paramètres passées dans la page, ex : l'id dans /profil/:id
+  const params = useParams();
+
+  return (
+    <div>
+      <h1>Bienvenue sur votre profil !</h1>
+      <p>{params.id}</p>
+    </div>
+  )
+}
+
+export default function Home() {
+  // On passe un state dans le link
+	return (
+		<div>
+			<h1>Bienvenue sur le site !</h1>
+			<Link to="/contact"
+			state={{fromHome: "Hello World !"}}>Contact</Link>
+		</div>
+	)
+}
+
+export default function Contact() {
+  // useLocation() permet de récupérer le state qu'on a passé dans le Link
+  const location = useLocation()
+  return (
+    <div>
+      Contact
+    </div>
+  )
+}
+```
