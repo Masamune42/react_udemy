@@ -5,6 +5,7 @@ import ThemeContextProvider from './Context/ThemeContext';
 function App() {
   return (
     <div className="App">
+      {/* On entoure l'endroit où on veut utiliser le contexte */}
       <ThemeContextProvider>
         <Content />
       </ThemeContextProvider>
